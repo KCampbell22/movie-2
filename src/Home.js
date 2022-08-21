@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { json, checkStatus } from "./utils";
 
-const Movie = (props) => {
+export const Movie = (props) => {
   const { Title, Year, imdbID, Type, Poster } = props.movie;
-
+  const { id } = useParams();
+  // create a const useParams
   return (
     <div className="row">
       <div className="col-4 col-md-2 col-lg-1 mb-3">
-        <Link to={`/movie/${imdbID}/`}>
+        <Link to={`/movie/${id}/`}>
           <img src={Poster} className="img-fluid" />
         </Link>
       </div>

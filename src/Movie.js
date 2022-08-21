@@ -1,32 +1,28 @@
 import React from "react";
 import { json, checkStatus } from "./utils";
+import * as movieItem from "./Home";
 
 class Movie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       movie: null,
-      id: props.imdvID,
     };
   }
 
-  // api url is `https://www.omdbapi.com/?i=${this.props.id}&apikey=663da781`
-  // api key is 663da781
-  // using comonentDidMount() to fetch data from api, whatever I was doing before was not working
+  // I need to get the I
 
   componentDidMount() {
-    fetch(
-      `https://www.omdbapi.com/?i=${this.props.match.params.id}&apikey=663da781`
-    )
+    fetch(`https://www.omdbapi.com/?i=${this.props}&apikey=663da781`)
       .then(checkStatus)
       .then(json)
       .then((data) => {
         if (data.Response === "False") {
           throw new Error(data.Error);
         }
-
         if (data.Response === "True") {
-          this.setState({ movie: data });
+          console.log(data);
+          this.setState({ movie: data, error: "" });
         }
       })
       .catch((error) => {
